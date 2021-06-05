@@ -1,3 +1,6 @@
+"""
+Simple Python module to provide abstractions to Finerworks' REST API.
+"""
 import json
 import requests
 
@@ -34,10 +37,10 @@ class FinerWorks:
 
         if resp.status_code == 200:
             return resp.json()
-        else:
-            raise ConnectionError(
-                "Could Not Connect. Status Code: {0}".format(resp.status_code)
-            )
+
+        raise ConnectionError(
+            "Could Not Connect. Status Code: {0}".format(resp.status_code)
+        )
 
     def login(self):
         """
@@ -55,19 +58,19 @@ class FinerWorks:
         """
         Submit a FinerWorks Order via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
     def order_update(self):
         """
         Update a FinerWorks Order via REST API.
         """
-        pass
-    
+        pass  # pylint: disable=unnecessary-pass
+
     def order_status(self, ids):
         """
         Retrieve FinerWorks Order Status via REST API.
         """
-        assert type(ids) == list
+        assert type(ids) == list  # pylint: disable=unidiomatic-typecheck
         assert len(ids) == 1
         orders = {
             "order_ids": ids
@@ -79,28 +82,28 @@ class FinerWorks:
         """
         Retrieve Order Shipping options via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
     def customer_update(self):
         """
         Update Customer Info via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
     def address_validate(self):
         """
         Validate Customer Address for Shipping via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
     def product(self):
         """
         Get Product Details via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
 
     def product_images(self):
         """
         Query Product Images via REST API.
         """
-        pass
+        pass  # pylint: disable=unnecessary-pass
