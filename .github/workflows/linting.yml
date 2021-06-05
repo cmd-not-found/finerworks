@@ -19,7 +19,7 @@ jobs:
           invoke --list
           python --version
           pip list
-      - name: Checkint with Flake8
+      - name: Checking with Flake8
         run: |
           invoke check-flake
       - name: Lint with PyLint

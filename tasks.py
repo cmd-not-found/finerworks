@@ -7,7 +7,7 @@ from invoke import task
 
 def find_files(ext=None, exclude=None):
     """
-        Helper to return full file paths in root project dir given an extension.
+        Helper to return file paths in root project dir given an extension.
     """
     cur_dir = os.getcwd()
     ext_files = []
