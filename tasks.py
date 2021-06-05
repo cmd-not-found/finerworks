@@ -7,7 +7,7 @@ from invoke import task
 
 def find_files(ext=None, exclude=None):
     """
-        Helper to return file paths in root project dir given an extension.
+    Helper to return file paths in root project dir given an extension.
     """
     cur_dir = os.getcwd()
     ext_files = []
@@ -21,7 +21,7 @@ def find_files(ext=None, exclude=None):
 @task
 def lint(ctx):
     """
-        Task to run PyLint over all python files within the project.
+    Task to run PyLint over all python files within the project.
     """
     print('Invoking :: PyLint :')
     py_files = find_files(ext=['.py'], exclude=[])
@@ -31,7 +31,7 @@ def lint(ctx):
 @task
 def check_flake(ctx):
     """
-        Task to run Flak8 over all python files within the project.
+    Task to run Flak8 over all python files within the project.
     """
     print('Invoking :: Check Flake :')
     py_files = find_files(ext=['.py'], exclude=[])
@@ -42,7 +42,7 @@ def check_flake(ctx):
 @task
 def check_style(ctx):
     """
-        Task to run PEP8 over all the python files within the project.
+    Task to run PEP8 over all the python files within the project.
     """
     print('Invoking :: Check Style :')
     py_files = find_files(ext=['.py'], exclude=[])
@@ -53,6 +53,15 @@ def check_style(ctx):
 @task(check_style, check_flake)
 def check(_):
     """
-        Task to preform all check Tasks.
+    Task to preform all check Tasks.
     """
     print('Invoking :: Check :')
+
+
+@task()
+def test(ctx):
+    """
+    Task to perform pytest executions.
+    """
+    print('Invoking :: PyTest :')
+    ctx.run('python -m pytest')
