@@ -54,11 +54,20 @@ class FinerWorks:
         req = self._http_req("/test_my_credentials")
         return req
 
-    def order(self):
+    def order(self, recipient=None, addr=None, validate=None, test=None, po=None):
         """
         Submit a FinerWorks Order via REST API.
         """
-        pass  # pylint: disable=unnecessary-pass
+        item = {
+            "": ,
+            "recipient": recipient,
+            "test_mode": test,
+        }
+
+        if po:
+            item["order_po"]
+
+        req = self._http_req("/submit_orders")
 
     def order_update(self):
         """
@@ -66,16 +75,24 @@ class FinerWorks:
         """
         pass  # pylint: disable=unnecessary-pass
 
-    def order_status(self, ids):
+    def order_status(self, id):
         """
         Retrieve FinerWorks Order Status via REST API.
         """
-        assert type(ids) == list  # pylint: disable=unidiomatic-typecheck
-        assert len(ids) == 1
+        
+        id_list = [id]
         orders = {
-            "order_ids": ids
+            "order_ids": id_list
         }
         req = self._http_req("/fetch_order_status", orders)
+        return req
+
+    def order_statuses(self):
+        """
+        Retrieve order status id mapping options via REST API.
+        """
+
+        req = self._http_req("/list_order_status_definitions")
         return req
 
     def order_shipping(self):
@@ -90,11 +107,12 @@ class FinerWorks:
         """
         pass  # pylint: disable=unnecessary-pass
 
-    def address_validate(self):
+    def address_validate(self, recipient):
         """
         Validate Customer Address for Shipping via REST API.
         """
-        pass  # pylint: disable=unnecessary-pass
+        req = self._http_req("/validate_recipient_address", body=recipient)
+        return req
 
     def product(self):
         """
@@ -102,8 +120,12 @@ class FinerWorks:
         """
         pass  # pylint: disable=unnecessary-pass
 
-    def product_images(self):
+    def product_images(self, query=""):
         """
         Query Product Images via REST API.
         """
-        pass  # pylint: disable=unnecessary-pass
+        filter = {
+            "search_filter": query
+        }
+        req = self._http_req("/list_images", body=filter)
+        return req
