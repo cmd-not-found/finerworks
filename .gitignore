@@ -130,3 +130,6 @@ dmypy.json
 
 # VScode workspace
 *.code-workspace
+
+# Custom
+test_finerworks.py
