@@ -3,17 +3,23 @@ Simple Python module to provide abstractions to Finerworks' REST API.
 """
 import json
 import requests
+from .exceptions import *
 
-
-class finerworks:  # pylint: disable=invalid-name
+class api:  # pylint: disable=invalid-name
     """
     FinerWorks API object.
     """
 
-    def __init__(self, web_api_key, app_key):
+    def __init__(self, web_api_key=None, app_key=None):
         """
         Initialize FinerWorks API with required values.
         """
+        if web_api_key == None and app_key == None:
+            raise FinerworksError(
+                msg='\n`web_api_key` and `app_key` are required.'
+                    '\nRetrieve these values from the Finerworks Account'
+                    ' dashboard.'
+            )
         self.web_api_key = web_api_key
         self.app_key = app_key
         self.base_url = "https://api.finerworks.com/v3"
